@@ -225,8 +225,13 @@ body:not([data-theme="dark"]) .moon-icon {
     border-radius: 20px;
     box-shadow: var(--shadow);
     width: 100%;
-    overflow-x: auto; /* Allow horizontal scrolling on mobile to keep 3x4 grid */
     transition: background-color var(--transition-speed);
+}
+
+@media (max-width: 768px) {
+    .calendar-canvas {
+        padding: 1rem;
+    }
 }
 
 .canvas-header {
@@ -246,12 +251,24 @@ body:not([data-theme="dark"]) .moon-icon {
     font-weight: 500;
 }
 
-/* Calendar Grid (Forces 3 Columns for A4 replication) */
+/* Calendar Grid (Forces 3 Columns for A4 replication on desktop) */
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
-    min-width: 1000px; /* Keep it desktop size so export as JPG works correctly */
+}
+
+@media (max-width: 1024px) {
+    .calendar-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .calendar-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
 }
 
 /* --- Month Card --- */
