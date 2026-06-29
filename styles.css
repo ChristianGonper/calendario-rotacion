@@ -1,0 +1,647 @@
+/* --- Design System & CSS Variables --- */
+:root {
+    /* Base Colors - Light Theme */
+    --bg-app: #f5f7fb;
+    --bg-card: #ffffff;
+    --bg-canvas: #ffffff;
+    --text-primary: #2d3748;
+    --text-secondary: #718096;
+    --text-muted: #a0aec0;
+    --border-color: #e2e8f0;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+    /* Calendar Specific Colors */
+    --header-burgundy: #800020; /* Wine Red Burgundy */
+    --w-col-bg: #f8fafc;
+    --w-col-text: #64748b;
+    
+    /* Shift Colors (Premium Palette) */
+    --color-t-bg: #ff9100;       /* Tarde - Orange */
+    --color-t-text: #000000;
+    --color-m-bg: #10b981;       /* Mañana - Green */
+    --color-m-text: #ffffff;
+    --color-n-bg: #3f51b5;       /* Noche - Indigo/Blue */
+    --color-n-text: #ffffff;
+    --color-festivo-bg: #ef4444; /* Festivo - Red */
+    --color-festivo-text: #ffffff;
+    --color-vacaciones-bg: #ffeb3b; /* Vacaciones - Yellow */
+    --color-vacaciones-text: #1e293b;
+    --color-ajuste-bg: #00b0ff;  /* Ajuste - Light Blue */
+    --color-ajuste-text: #ffffff;
+    --color-descanso-bg: #e2e8f0; /* Descanso - Light Grey */
+    --color-descanso-text: #475569;
+    
+    --day-empty-bg: transparent;
+    --transition-speed: 0.2s;
+}
+
+/* Dark Theme Variables */
+[data-theme="dark"] {
+    --bg-app: #0f172a;
+    --bg-card: #1e293b;
+    --bg-canvas: #0f172a;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --border-color: #334155;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+    --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.6);
+
+    --header-burgundy: #9b1c31;
+    --w-col-bg: #1e293b;
+    --w-col-text: #94a3b8;
+    
+    --color-descanso-bg: #334155;
+    --color-descanso-text: #cbd5e1;
+}
+
+/* --- Global Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-app);
+    color: var(--text-primary);
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+.app-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* --- Header Controls --- */
+header {
+    background-color: var(--bg-card);
+    padding: 1.5rem 2rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    transition: background-color var(--transition-speed);
+}
+
+header h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--header-burgundy);
+    letter-spacing: -0.5px;
+}
+
+header .subtitle {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Filter controls */
+.filter-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filter-container label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.control-select {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.control-select:focus {
+    outline: none;
+    border-color: var(--header-burgundy);
+}
+
+/* Button styles */
+.btn-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-action:hover {
+    background-color: var(--border-color);
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    background-color: var(--header-burgundy);
+    color: #ffffff;
+    border-color: var(--header-burgundy);
+}
+
+.btn-primary:hover {
+    background-color: #600018;
+    border-color: #600018;
+}
+
+.btn-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.btn-icon:hover {
+    background-color: var(--border-color);
+}
+
+.btn-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Light / Dark icon toggles */
+[data-theme="dark"] .sun-icon {
+    display: block;
+}
+[data-theme="dark"] .moon-icon {
+    display: none;
+}
+body:not([data-theme="dark"]) .sun-icon {
+    display: none;
+}
+body:not([data-theme="dark"]) .moon-icon {
+    display: block;
+}
+
+.btn-icon-svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* --- Printable / Exportable Canvas --- */
+.calendar-canvas {
+    background-color: var(--bg-canvas);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    width: 100%;
+    overflow-x: auto; /* Allow horizontal scrolling on mobile to keep 3x4 grid */
+    transition: background-color var(--transition-speed);
+}
+
+.canvas-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.canvas-header h1 {
+    font-size: 2.2rem;
+    color: var(--header-burgundy);
+    font-weight: 800;
+    margin-bottom: 0.2rem;
+}
+
+.canvas-header p {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Calendar Grid (Forces 3 Columns for A4 replication) */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    min-width: 1000px; /* Keep it desktop size so export as JPG works correctly */
+}
+
+/* --- Month Card --- */
+.month-card {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    padding: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    transition: transform 0.2s, box-shadow 0.2s, background-color var(--transition-speed);
+}
+
+.month-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.month-title {
+    background-color: var(--header-burgundy);
+    color: #ffffff;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 0.4rem;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* Month Table Grid */
+.month-grid {
+    display: grid;
+    grid-template-columns: 32px repeat(7, 1fr);
+    gap: 3px;
+    text-align: center;
+}
+
+/* Grid Headers */
+.grid-header {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    padding: 0.3rem 0;
+    text-transform: uppercase;
+}
+
+.grid-header.week-col {
+    color: var(--text-muted);
+}
+
+/* Cell Base Styles */
+.grid-cell {
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    aspect-ratio: 1; /* Make day cells square */
+    position: relative;
+    user-select: none;
+}
+
+/* Week number cells */
+.week-cell {
+    background-color: var(--w-col-bg);
+    color: var(--w-col-text);
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-right: 1px solid var(--border-color);
+}
+
+/* Empty day cells */
+.empty-cell {
+    background-color: var(--day-empty-bg);
+}
+
+/* Work / Holiday / Special cells */
+.day-cell {
+    cursor: pointer;
+    transition: transform 0.15s ease, filter 0.15s ease, opacity 0.15s ease;
+}
+
+.day-cell:hover {
+    transform: scale(1.15);
+    z-index: 10;
+    filter: brightness(0.95);
+}
+
+.day-num {
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.day-shift-label {
+    font-size: 0.55rem;
+    font-weight: 800;
+    margin-top: 1px;
+    opacity: 0.85;
+}
+
+/* Shift Color Styles */
+.shift-T {
+    background-color: var(--color-t-bg) !important;
+    color: var(--color-t-text) !important;
+}
+
+.shift-M {
+    background-color: var(--color-m-bg) !important;
+    color: var(--color-m-text) !important;
+}
+
+.shift-N {
+    background-color: var(--color-n-bg) !important;
+    color: var(--color-n-text) !important;
+}
+
+.shift-FESTIVO {
+    background-color: var(--color-festivo-bg) !important;
+    color: var(--color-festivo-text) !important;
+}
+
+.shift-VACACIONES {
+    background-color: var(--color-vacaciones-bg) !important;
+    color: var(--color-vacaciones-text) !important;
+}
+
+.shift-AJUSTE {
+    background-color: var(--color-ajuste-bg) !important;
+    color: var(--color-ajuste-text) !important;
+}
+
+.shift-DESCANSO {
+    background-color: var(--color-descanso-bg);
+    color: var(--color-descanso-text);
+}
+
+/* --- Legend Section --- */
+.legend-section {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--border-color);
+}
+
+.legend-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.8rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.legend-item:hover {
+    background-color: var(--border-color);
+}
+
+.legend-color {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 800;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.legend-label {
+    color: var(--text-primary);
+}
+
+/* --- Stats Dashboard --- */
+.stats-section {
+    background-color: var(--bg-card);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    transition: background-color var(--transition-speed);
+}
+
+.stats-section h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+@media (max-width: 1024px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.stat-card {
+    padding: 1.2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    transition: transform 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.card-work { border-left: 5px solid var(--text-primary); }
+.card-m { border-left: 5px solid var(--color-m-bg); .stat-value { color: var(--color-m-bg); } }
+.card-t { border-left: 5px solid var(--color-t-bg); .stat-value { color: var(--color-t-bg); } }
+.card-n { border-left: 5px solid var(--color-n-bg); .stat-value { color: var(--color-n-bg); } }
+.card-vac { border-left: 5px solid var(--color-vacaciones-bg); .stat-value { color: #d4af37; } }
+.card-ajuste { border-left: 5px solid var(--color-ajuste-bg); .stat-value { color: var(--color-ajuste-bg); } }
+.card-festivo { border-left: 5px solid var(--color-festivo-bg); .stat-value { color: var(--color-festivo-bg); } }
+.card-descanso { border-left: 5px solid var(--color-descanso-bg); .stat-value { color: var(--text-secondary); } }
+
+/* --- Interactive Tooltip --- */
+.tooltip {
+    position: absolute;
+    background-color: #1e293b;
+    color: #ffffff;
+    padding: 0.6rem 0.9rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 1000;
+    transition: opacity 0.15s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+    white-space: nowrap;
+}
+
+/* --- Filter Visual Effects --- */
+.fade-out {
+    opacity: 0.15;
+    transform: scale(0.95);
+    filter: grayscale(0.5);
+}
+
+/* --- Print Styles --- */
+@media print {
+    body {
+        background-color: #ffffff;
+        color: #000000;
+        padding: 0;
+    }
+    
+    .no-print {
+        display: none !important;
+    }
+    
+    .only-print {
+        display: block !important;
+    }
+
+    .app-container {
+        gap: 0;
+    }
+
+    .calendar-canvas {
+        padding: 0;
+        box-shadow: none;
+        border-radius: 0;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: visible !important;
+    }
+
+    .calendar-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 10px !important;
+        min-width: 100% !important;
+    }
+
+    .month-card {
+        border: 1px solid #000000 !important;
+        box-shadow: none !important;
+        transform: none !important;
+        page-break-inside: avoid;
+    }
+    
+    .month-title {
+        background-color: #800020 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .shift-T {
+        background-color: var(--color-t-bg) !important;
+        color: var(--color-t-text) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .shift-M {
+        background-color: var(--color-m-bg) !important;
+        color: var(--color-m-text) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .shift-N {
+        background-color: var(--color-n-bg) !important;
+        color: var(--color-n-text) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .shift-FESTIVO {
+        background-color: var(--color-festivo-bg) !important;
+        color: var(--color-festivo-text) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .shift-VACACIONES {
+        background-color: var(--color-vacaciones-bg) !important;
+        color: var(--color-vacaciones-text) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .shift-AJUSTE {
+        background-color: var(--color-ajuste-bg) !important;
+        color: var(--color-ajuste-text) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .shift-DESCANSO {
+        background-color: var(--color-descanso-bg) !important;
+        color: var(--color-descanso-text) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    
+    .legend-section {
+        margin-top: 1.5rem !important;
+        padding-top: 1rem !important;
+        border-top: 1px solid #000000 !important;
+    }
+
+    .legend-color {
+        border: 1px solid #000000 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
+
+/* Hide print-only headers by default in normal screen view */
+.only-print {
+    display: none;
+}

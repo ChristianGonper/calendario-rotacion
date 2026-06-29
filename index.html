@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotación C 5-2 - 2026</title>
+    <meta name="description" content="Calendario de turnos de trabajo Rotación C 5-2 para el año 2026 con vacaciones y días de ajuste personalizados.">
+    <!-- Favicon (Emoji) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📅</text></svg>">
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Main CSS stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- html2canvas for JPG export -->
+    <script src="html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Control Header -->
+        <header class="no-print">
+            <div class="header-left">
+                <h1>ROTACIÓN C 5-2 2026</h1>
+                <p class="subtitle">Calendario Laboral Personal</p>
+            </div>
+            <div class="header-right">
+                <!-- Filter Toggle -->
+                <div class="filter-container">
+                    <label for="shift-filter">Resaltar:</label>
+                    <select id="shift-filter" class="control-select">
+                        <option value="all">Ver todo</option>
+                        <option value="M">Mañana (M)</option>
+                        <option value="T">Tarde (T)</option>
+                        <option value="N">Noche (N)</option>
+                        <option value="FESTIVO">Festivos</option>
+                        <option value="VACACIONES">Vacaciones</option>
+                        <option value="AJUSTE">Ajustes</option>
+                    </select>
+                </div>
+                <!-- Action Buttons -->
+                <button id="btn-theme" class="btn-icon" title="Cambiar tema">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+                <button id="btn-print" class="btn-action" title="Imprimir calendario">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon-svg"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                    Imprimir
+                </button>
+                <button id="btn-download" class="btn-action btn-primary" title="Descargar como JPG de alta calidad">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon-svg"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    Descargar JPG
+                </button>
+            </div>
+        </header>
+
+        <!-- Printable Canvas (Everything inside this container will be captured in the JPG) -->
+        <main id="calendar-canvas" class="calendar-canvas">
+            <div class="canvas-header only-print">
+                <h1>ROTACIÓN C 5-2 2026</h1>
+                <p>Calendario Laboral Personal</p>
+            </div>
+
+            <!-- Calendar Grid -->
+            <div id="calendar-grid" class="calendar-grid">
+                <!-- Rendered dynamically by app.js -->
+            </div>
+
+            <!-- Legend Grid -->
+            <section class="legend-section">
+                <div class="legend-grid">
+                    <div class="legend-item" data-type="T">
+                        <span class="legend-color shift-T">T</span>
+                        <span class="legend-label">TARDE</span>
+                    </div>
+                    <div class="legend-item" data-type="M">
+                        <span class="legend-color shift-M">M</span>
+                        <span class="legend-label">MAÑANA</span>
+                    </div>
+                    <div class="legend-item" data-type="N">
+                        <span class="legend-color shift-N">N</span>
+                        <span class="legend-label">NOCHE</span>
+                    </div>
+                    <div class="legend-item" data-type="FESTIVO">
+                        <span class="legend-color shift-FESTIVO"></span>
+                        <span class="legend-label">FESTIVO</span>
+                    </div>
+                    <div class="legend-item" data-type="VACACIONES">
+                        <span class="legend-color shift-VACACIONES"></span>
+                        <span class="legend-label">VACACIONES</span>
+                    </div>
+                    <div class="legend-item" data-type="AJUSTE">
+                        <span class="legend-color shift-AJUSTE"></span>
+                        <span class="legend-label">AJUSTE</span>
+                    </div>
+                    <div class="legend-item" data-type="DESCANSO">
+                        <span class="legend-color shift-DESCANSO"></span>
+                        <span class="legend-label">DESCANSO</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Stats Section -->
+        <section class="stats-section no-print">
+            <h2>Estadísticas Anuales 2026</h2>
+            <div class="stats-grid">
+                <div class="stat-card card-work">
+                    <span class="stat-value" id="stat-total-work">0</span>
+                    <span class="stat-label">Días de Trabajo Totales</span>
+                </div>
+                <div class="stat-card card-m">
+                    <span class="stat-value" id="stat-m">0</span>
+                    <span class="stat-label">Turnos de Mañana (M)</span>
+                </div>
+                <div class="stat-card card-t">
+                    <span class="stat-value" id="stat-t">0</span>
+                    <span class="stat-label">Turnos de Tarde (T)</span>
+                </div>
+                <div class="stat-card card-n">
+                    <span class="stat-value" id="stat-n">0</span>
+                    <span class="stat-label">Turnos de Noche (N)</span>
+                </div>
+                <div class="stat-card card-vac">
+                    <span class="stat-value" id="stat-vac">0</span>
+                    <span class="stat-label">Días de Vacaciones</span>
+                </div>
+                <div class="stat-card card-ajuste">
+                    <span class="stat-value" id="stat-ajuste">0</span>
+                    <span class="stat-label">Días de Ajuste</span>
+                </div>
+                <div class="stat-card card-festivo">
+                    <span class="stat-value" id="stat-festivo">0</span>
+                    <span class="stat-label">Festivos Laborables</span>
+                </div>
+                <div class="stat-card card-descanso">
+                    <span class="stat-value" id="stat-descanso">0</span>
+                    <span class="stat-label">Días de Descanso (Fines de Semana)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tooltip -->
+        <div id="tooltip" class="tooltip" aria-hidden="true"></div>
+    </div>
+
+    <!-- Main JavaScript application -->
+    <script src="app.js"></script>
+</body>
+</html>
